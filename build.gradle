@@ -88,13 +88,15 @@ runServer {
 
 modrinth {
     token = System.getenv("MODRINTH_TOKEN")
+    def log = System.getenv("MODRINTH_TOKEN")
+    if(log != null) changelog = log
     projectId = "${modrinth_id}"
     versionNumber = "${plugin_version}"
     versionType = "${build_status}"
     uploadFile = jar
     loaders = ["paper"]
     syncBodyFrom = file("readme.md").text
-    changelog = file("changelog.md").text
+//    changelog = file("changelog.md").text
     dependencies {
     }
 }

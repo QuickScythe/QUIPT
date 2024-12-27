@@ -4,7 +4,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConfigFile {
+public @interface ConfigTemplate {
     String name();
 
     String ext() default "json";

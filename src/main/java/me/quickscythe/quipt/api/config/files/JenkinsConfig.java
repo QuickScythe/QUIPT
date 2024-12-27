@@ -1,12 +1,12 @@
 package me.quickscythe.quipt.api.config.files;
 
 import me.quickscythe.quipt.api.config.Config;
-import me.quickscythe.quipt.api.config.ConfigFile;
+import me.quickscythe.quipt.api.config.ConfigTemplate;
 import me.quickscythe.quipt.api.config.ConfigValue;
 
 import java.io.File;
 
-@ConfigFile(name = "jenkins")
+@ConfigTemplate(name = "jenkins")
 public class JenkinsConfig extends Config {
 
     @ConfigValue

@@ -12,6 +12,10 @@
     * [Ephemeral Advancements](/wiki/developers/ephemeral_advancements.md)
     * [Message Utils](/wiki/developers/messages.md)
       * [Variable Replacements](/wiki/developers/messages.md#variable-replacements)
+    * [Config Manager](/wiki/developers/config.md)
+      * [Creating a Config Template](/wiki/developers/config.md#creating-a-config-template)
+      * [Registering a Config](/wiki/developers/config.md#registering-a-config)
+      * [Using a Config](/wiki/developers/config.md#using-a-config)
 <!-- TOC -->
 ## Resource Pack Management
 QUIPT allows you to manage resource packs for your server. First you'll need to configure the resource pack settings in the `resources.json` file. You can find more information on how to do this in the [Configuration](/wiki/server_owners/resource_pack_management.md#configuration) section. Once you've configured the resource pack settings, you can use the `/resourcepack` command to manage resource packs on your server (see [Commands](/wiki/server_owners/resource_pack_management.md#commands) for more information), or you can set up GitHub to automatically update the resource pack for you (see [GitHub Integration](/wiki/server_owners/resource_pack_management.md#github-integration) for more information).

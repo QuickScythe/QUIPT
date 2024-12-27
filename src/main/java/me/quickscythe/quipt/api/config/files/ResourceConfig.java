@@ -1,12 +1,12 @@
 package me.quickscythe.quipt.api.config.files;
 
 import me.quickscythe.quipt.api.config.Config;
-import me.quickscythe.quipt.api.config.ConfigFile;
+import me.quickscythe.quipt.api.config.ConfigTemplate;
 import me.quickscythe.quipt.api.config.ConfigValue;
 
 import java.io.File;
 
-@ConfigFile(name = "resources")
+@ConfigTemplate(name = "resources")
 public class ResourceConfig extends Config {
 
     @ConfigValue

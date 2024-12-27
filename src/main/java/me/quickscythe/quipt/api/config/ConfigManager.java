@@ -22,8 +22,8 @@ public class ConfigManager {
         try {
 
 
-            if (template.isAnnotationPresent(ConfigFile.class)) {
-                ConfigFile cf = template.getAnnotation(ConfigFile.class);
+            if (template.isAnnotationPresent(ConfigTemplate.class)) {
+                ConfigTemplate cf = template.getAnnotation(ConfigTemplate.class);
                 CoreUtils.logger().log("QuiptConfig", "Registering config file \"" + cf.name() + "\".");
                 if(!plugin.getDataFolder().exists()) plugin.getDataFolder().mkdir();
                 File file = new File(plugin.getDataFolder(), cf.name() + "." + cf.ext());
@@ -55,7 +55,7 @@ public class ConfigManager {
     }
 
     public static <T extends Config> T getConfig(JavaPlugin plugin, Class<T> clazz) {
-        return (T) data.get(plugin.getName() + "/" + clazz.getAnnotation(ConfigFile.class).name());
+        return (T) data.get(plugin.getName() + "/" + clazz.getAnnotation(ConfigTemplate.class).name());
     }
     public static Config getConfig(String name) {
         return data.get(name);

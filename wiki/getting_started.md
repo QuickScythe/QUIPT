@@ -12,6 +12,10 @@
     * [Ephemeral Advancements](/wiki/developers/ephemeral_advancements.md)
     * [Message Utils](/wiki/developers/messages.md)
       * [Variable Replacements](/wiki/developers/messages.md#variable-replacements)
+    * [Config Manager](/wiki/developers/config.md)
+      * [Creating a Config Template](/wiki/developers/config.md#creating-a-config-template)
+      * [Registering a Config](/wiki/developers/config.md#registering-a-config)
+      * [Using a Config](/wiki/developers/config.md#using-a-config)
 <!-- TOC -->
 # Getting Started
 This page will guide you through the set-up process for QUIPT. By the end of this page, you should have a working basic QUIPT installation ready to go.

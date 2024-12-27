@@ -12,6 +12,10 @@
     * [Ephemeral Advancements](/wiki/developers/ephemeral_advancements.md)
     * [Message Utils](/wiki/developers/messages.md)
       * [Variable Replacements](/wiki/developers/messages.md#variable-replacements)
+    * [Config Manager](/wiki/developers/config.md)
+      * [Creating a Config Template](/wiki/developers/config.md#creating-a-config-template)
+      * [Registering a Config](/wiki/developers/config.md#registering-a-config)
+      * [Using a Config](/wiki/developers/config.md#using-a-config)
 <!-- TOC -->
 ## Ephemeral Advancements
 Ephemeral Advancements are QUIPT's answer to sending custom toasts to players, without having it tied to an advancement in the player's advancement tree. Once the player has seen the toast, it will be removed from the server, so if you want to display the toast to multiple players, you'll need to create a new instance of `EphemeralAdvancement` for each player. The recommended way of creating a new `EphemeralAdvancement` is to use the `EphemeralAdvancement.Builder` class.

@@ -90,6 +90,7 @@ modrinth {
     token = System.getenv("MODRINTH_TOKEN")
     def log = System.getenv("CHANGELOG")
     if(log != null) changelog = log
+    else changelog = file("changelog.md").text
     projectId = "${modrinth_id}"
     versionNumber = "${plugin_version}"
     versionType = "${build_status}"

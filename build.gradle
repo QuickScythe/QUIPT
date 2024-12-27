@@ -88,7 +88,7 @@ runServer {
 
 modrinth {
     token = System.getenv("MODRINTH_TOKEN")
-    def log = System.getenv("MODRINTH_TOKEN")
+    def log = System.getenv("CHANGELOG")
     if(log != null) changelog = log
     projectId = "${modrinth_id}"
     versionNumber = "${plugin_version}"

@@ -13,6 +13,7 @@ public class Loader implements PluginLoader {
     public void classloader(@NotNull PluginClasspathBuilder classpathBuilder) {
         MavenLibraryResolver resolver = new MavenLibraryResolver();
         resolver.addDependency(new Dependency(new DefaultArtifact("org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r"), null));
+        resolver.addDependency(new Dependency(new DefaultArtifact("org.json:json:20231013"), null));
         resolver.addRepository(new RemoteRepository.Builder(
                 "central", "default", "https://repo1.maven.org/maven2/"
         ).build());

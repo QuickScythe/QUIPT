@@ -28,6 +28,7 @@ repositories {
 }
 
 dependencies {
+    compileOnly 'org.json:json:20231013'
     compileOnly 'org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r'
 //    compileOnly "org.spongepowered:mixin:0.8.5"
 //    annotationProcessor("org.spongepowered:mixin-processor:0.8.5")

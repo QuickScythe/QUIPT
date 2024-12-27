@@ -10,10 +10,11 @@ import me.quickscythe.quipt.utils.chat.Logger;
 import me.quickscythe.quipt.utils.chat.MessageUtils;
 import me.quickscythe.quipt.utils.chat.placeholder.PlaceholderUtils;
 import me.quickscythe.quipt.utils.network.resources.ResourcePackServer;
-import me.quickscythe.quipt.utils.storage.DataManager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.JSONObject;
+
+import java.io.File;
 
 public class CoreUtils {
 
@@ -21,12 +22,14 @@ public class CoreUtils {
     private static DefaultConfig config;
     private static JavaPlugin plugin;
     private static ResourcePackServer packserver;
+    private static File dataFolder;
 
 
     public static void init(JavaPlugin plugin) {
         CoreUtils.plugin = plugin;
+        dataFolder = plugin.getDataFolder();
+        if (!dataFolder.exists()) CoreUtils.logger().log("DataManager", "Creating data folder: " + dataFolder.mkdir());
         logger = new Logger(plugin);
-        DataManager.init(plugin);
         config = ConfigManager.registerConfig(plugin, DefaultConfig.class);
         ResourceConfig resourceConfig = ConfigManager.registerConfig(plugin, ResourceConfig.class);
         ConfigManager.registerConfig(plugin, JenkinsConfig.class);
@@ -39,6 +42,10 @@ public class CoreUtils {
         if (!resourceConfig.repo_url.isEmpty()) {
             packserver.setUrl(resourceConfig.repo_url);
         }
+    }
+
+    public static File dataFolder() {
+        return dataFolder;
     }
 
 

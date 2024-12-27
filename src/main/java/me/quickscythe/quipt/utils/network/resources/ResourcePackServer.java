@@ -7,7 +7,7 @@ import me.quickscythe.quipt.api.config.ConfigManager;
 import me.quickscythe.quipt.api.config.files.HashesConfig;
 import me.quickscythe.quipt.api.config.files.ResourceConfig;
 import me.quickscythe.quipt.utils.CoreUtils;
-import me.quickscythe.quipt.utils.storage.DataManager;
+import me.quickscythe.quipt.utils.chat.Logger;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.format.TextColor;
@@ -49,10 +49,18 @@ public class ResourcePackServer {
     public ResourcePackServer() {
         hashData = ConfigManager.getConfig(CoreUtils.plugin(), HashesConfig.class);
         packData = ConfigManager.getConfig(CoreUtils.plugin(), ResourceConfig.class);
-        pack = new File(DataManager.getDataFolder(), "resources/pack.zip");
-        repo = new File(DataManager.getDataFolder(), "resources/repo/");
-        if (!pack.getParentFile().isDirectory()) pack.getParentFile().mkdirs();
-        if (!repo.exists()) repo.mkdirs();
+        pack = new File(CoreUtils.dataFolder(), "resources/pack.zip");
+        repo = new File(CoreUtils.dataFolder(), "resources/repo/");
+        if (!pack.getParentFile().isDirectory())
+            CoreUtils.logger().log(Logger.LogLevel.INFO, "Resources",
+                    pack.getParentFile().mkdirs()
+                            ? "Set up 'pack.zip' parents."
+                            : "Couldn't set up 'pack.zip' parents.");
+        if (!repo.exists())
+            CoreUtils.logger().log(Logger.LogLevel.INFO, "Resources",
+                    repo.mkdirs()
+                            ? "Set up 'repo' directory."
+                            : "Couldn't set up 'repo' directory.");
         try {
 
             //Setup server

@@ -13,8 +13,11 @@
     * [Message Utils](/wiki/developers/messages.md)
       * [Variable Replacements](/wiki/developers/messages.md#variable-replacements)
 <!-- TOC -->
-# Getting Started
-This page will guide you through the set-up process for QUIPT. By the end of this page, you should have a working basic QUIPT installation ready to go.
+## Resource Pack Management
+QUIPT allows you to manage resource packs for your server. First you'll need to configure the resource pack settings in the `config.yml` file. You can find more information on how to do this in the [Configuration](/wiki/server_owners.md#configuration) section. Once you've configured the resource pack settings, you can use the `/resourcepack` command to manage resource packs on your server (see [Commands](/wiki/server_owners.md#commands) for more information), or you can set up GitHub to automatically update the resource pack for you (see [GitHub Integration](/wiki/server_owners.md#github-integration) for more information).
 
-## Installation
-To install QUIPT, you should download the latest version of the plugin from the [modrinth page](https://modrinth.com/plugin/quipt/versions). Once you have the jar file, place it in your server's `plugins` folder and restart the server. QUIPT should now be installed and ready to configure. If you're a server owner, you should check out the [Server Owners](/wiki/server_owners.md) page for more information on how to configure QUIPT for your server. If you're a developer, you should check out the [Developers](/wiki/developers.md) page for more information on how to interact with QUIPT programmatically.
+### Configuration
+
+### Commands
+
+### GitHub Integration

@@ -43,6 +43,7 @@ public class ConfigManager {
                 }
 
                 data.put(plugin.getName() + "/" + cf.name(), content);
+                content.save();
                 return content;
             } else {
                 throw new IllegalArgumentException("Class must have @ConfigFile annotation");

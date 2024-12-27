@@ -1,12 +1,6 @@
-<!-- TOC -->
-* [QUIPT](#quipt)
-  * [Server Owner Features](#server-owner-features)
-    * [Resource Pack Management](#resource-pack-management)
-  * [Developer Features](#developer-features)
-    * [EphemeralAdvancements](#ephemeraladvancements)
-* [Wiki](./wiki/wiki.md)
-<!-- TOC -->
 # QUIPT
+![Latest build status](https://ci.vanillaflux.com/job/block_bridge_api/badge/icon)
+
 QUIPT is an ambitious project that aims to provide a handful of tools to both server owners and developers. Be sure to check out the [wiki](./wiki/wiki.md) for a more in-depth description of how to use this plugin.
 
 ## Server Owner Features

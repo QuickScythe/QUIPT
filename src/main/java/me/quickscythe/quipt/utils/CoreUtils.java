@@ -27,9 +27,9 @@ public class CoreUtils {
 
     public static void init(JavaPlugin plugin) {
         CoreUtils.plugin = plugin;
+        logger = new Logger(plugin);
         dataFolder = plugin.getDataFolder();
         if (!dataFolder.exists()) CoreUtils.logger().log("DataManager", "Creating data folder: " + dataFolder.mkdir());
-        logger = new Logger(plugin);
         config = ConfigManager.registerConfig(plugin, DefaultConfig.class);
         ResourceConfig resourceConfig = ConfigManager.registerConfig(plugin, ResourceConfig.class);
         ConfigManager.registerConfig(plugin, JenkinsConfig.class);

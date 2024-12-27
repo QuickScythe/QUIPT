@@ -4,9 +4,12 @@
         * [Installation](/wiki/getting_started.md#installation)
     * [Server Owners](/wiki/server_owners.md)
         * [Resource Pack Management](/wiki/server_owners.md#resource-pack-management)
+            * [Configuration](/wiki/server_owners.md#configuration)
+            * [Commands](/wiki/server_owners.md#commands)
+            * [GitHub Integration](/wiki/server_owners.md#github-integration)
     * [Developers](/wiki/developers.md)
         * [Resource Pack Management](/wiki/developers.md#resource-pack-management)
-        * [EphemeralAdvancements](/wiki/developers.md#ephemeral-advancements)
+        * [Ephemeral Advancements](/wiki/developers.md#ephemeral-advancements)
 <!-- TOC -->
 
 # Wiki

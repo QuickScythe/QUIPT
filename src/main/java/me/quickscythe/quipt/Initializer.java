@@ -20,7 +20,6 @@ public final class Initializer extends JavaPlugin {
 
         new PlayerListener(this);
 
-        CoreUtils.packServer().setUrl("https://github.com/DragonForge-Creations/df_ll4el_resources");
 
     }
 

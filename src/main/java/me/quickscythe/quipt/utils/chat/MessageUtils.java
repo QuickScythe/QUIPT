@@ -20,6 +20,7 @@ public class MessageUtils {
 
     public static void start() {
         createDefaultMessages();
+
         StringBuilder data = new StringBuilder();
         try {
             if (!file.exists())

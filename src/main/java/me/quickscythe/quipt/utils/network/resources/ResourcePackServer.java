@@ -43,6 +43,8 @@ public class ResourcePackServer {
     private final HashesConfig hashData;
     private final ResourceConfig packData;
 
+    private boolean serverStarted = false;
+
     private byte[] storedHash = new byte[0];
 //    byte[] hash = new byte[0];
 
@@ -61,6 +63,12 @@ public class ResourcePackServer {
                     repo.mkdirs()
                             ? "Set up 'repo' directory."
                             : "Couldn't set up 'repo' directory.");
+       if(pack.exists()){
+           startServer();
+       }
+    }
+
+    private void startServer() {
         try {
 
             //Setup server
@@ -80,7 +88,7 @@ public class ResourcePackServer {
                 }
             }
             storedHash = digest.digest();
-
+            serverStarted = true;
             //sync
             sync();
         } catch (IOException | NoSuchAlgorithmException e) {
@@ -169,6 +177,8 @@ public class ResourcePackServer {
 
     public void setUrl(String url) {
         if (url.isEmpty()) return;
+        if(!serverStarted)
+            startServer();
         String oldUrl = packData.repo_url;
         if (!oldUrl.equals(url)) {
             CoreUtils.logger().log("Resources", "Resource pack URL changed. Updating pack.");

@@ -66,7 +66,8 @@ public class ConfigManager {
             while (scanner.hasNextLine()) {
                 builder.append(scanner.nextLine());
             }
-            return new JSONObject(builder.toString());
+            String content = builder.toString();
+            return content.isEmpty() || content.isBlank() ? new JSONObject() : new JSONObject(builder.toString());
         } catch (IOException e) {
             CoreUtils.logger().log(Logger.LogLevel.ERROR, "QuiptConfig", "Failed to load config file");
             CoreUtils.logger().log(Logger.LogLevel.ERROR, "QuiptConfig", e);

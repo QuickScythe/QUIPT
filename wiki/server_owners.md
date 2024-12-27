@@ -9,5 +9,4 @@
         * [EphemeralAdvancements](./developers.md#ephemeral-advancements)
 <!-- TOC -->
 
-# Wiki
-This is the wiki for QUIPT. Here you will find information on how to use the plugin, as well as some examples on how to use the plugin.
+## Resource Pack Management

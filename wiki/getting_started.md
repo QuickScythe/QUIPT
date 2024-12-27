@@ -9,5 +9,7 @@
         * [EphemeralAdvancements](./developers.md#ephemeral-advancements)
 <!-- TOC -->
 
-# Wiki
+# Getting Started
 This is the wiki for QUIPT. Here you will find information on how to use the plugin, as well as some examples on how to use the plugin.
+
+## Installation

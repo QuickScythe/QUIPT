@@ -18,6 +18,13 @@ public class ConfigManager {
 
     private static final Map<String, Config> data = new HashMap<>();
 
+    /**
+     * Registers a config file for a plugin
+     * @param plugin The plugin to register the config file for
+     * @param template The class of the config file
+     * @param <T> The type of the config file
+     * @return The config file
+     */
     public static <T extends Config> T registerConfig(JavaPlugin plugin, Class<T> template) {
         try {
 
@@ -54,9 +61,22 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * Gets a config file for a plugin
+     * @param plugin The plugin to get the config file for
+     * @param clazz The class of the config file
+     * @param <T> The type of the config file
+     * @return The config file
+     */
     public static <T extends Config> T getConfig(JavaPlugin plugin, Class<T> clazz) {
         return (T) data.get(plugin.getName() + "/" + clazz.getAnnotation(ConfigTemplate.class).name());
     }
+
+    /**
+     * Gets a config file by name
+     * @param name The name of the config file
+     * @return The config file
+     */
     public static Config getConfig(String name) {
         return data.get(name);
     }
@@ -76,6 +96,10 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * Saves a config file
+     * @param configContent The config file to save
+     */
     public static void saveConfig(Config configContent) {
         try {
             File file = configContent.file();
@@ -101,6 +125,9 @@ public class ConfigManager {
 
     }
 
+    /**
+     * Saves all config files
+     */
     public static void saveAll() {
         for (Config config : data.values()) {
             saveConfig(config);

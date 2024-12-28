@@ -30,6 +30,7 @@ repositories {
 dependencies {
     compileOnly "org.json:json:$json_version"
     compileOnly "org.eclipse.jgit:org.eclipse.jgit:$jgit_version"
+    implementation("com.zaxxer:HikariCP:$hikari_version")
     paperweight.paperDevBundle("${minecraft_version}-${paper_build}")
 
 }

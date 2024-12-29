@@ -11,6 +11,7 @@ package me.quickscythe.quipt.api.advancements;
 
 import io.papermc.paper.advancement.AdvancementDisplay;
 import me.quickscythe.quipt.utils.CoreUtils;
+import me.quickscythe.quipt.utils.ItemUtils;
 import me.quickscythe.quipt.utils.chat.MessageUtils;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -167,7 +168,7 @@ public class EphemeralAdvancement {
             ItemMeta itemMeta = itemStack.getItemMeta();
             if (itemMeta == null) components = new JSONObject();
             else {
-                components = CoreUtils.serializeComponents(itemStack);
+                components = ItemUtils.serializeComponents(itemStack);
             }
             icon.put("components", components);
             data.getJSONObject("display").put("icon", icon);

@@ -9,7 +9,9 @@ import me.quickscythe.quipt.api.config.files.ResourceConfig;
 import me.quickscythe.quipt.utils.chat.Logger;
 import me.quickscythe.quipt.utils.chat.MessageUtils;
 import me.quickscythe.quipt.utils.chat.placeholder.PlaceholderUtils;
+import me.quickscythe.quipt.utils.heartbeat.HeartbeatUtils;
 import me.quickscythe.quipt.utils.network.resources.ResourcePackServer;
+import me.quickscythe.quipt.utils.sessions.SessionManager;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.JSONObject;
@@ -35,6 +37,10 @@ public class CoreUtils {
         ConfigManager.registerConfig(plugin, JenkinsConfig.class);
         ConfigManager.registerConfig(plugin, HashesConfig.class);
 
+        SessionManager.start(plugin);
+
+
+
         PlaceholderUtils.registerPlaceholders();
         MessageUtils.start();
         packserver = new ResourcePackServer();
@@ -42,6 +48,8 @@ public class CoreUtils {
         if (!resourceConfig.repo_url.isEmpty()) {
             packserver.setUrl(resourceConfig.repo_url);
         }
+
+        HeartbeatUtils.init(plugin);
     }
 
     public static File dataFolder() {
@@ -65,26 +73,5 @@ public class CoreUtils {
         return packserver;
     }
 
-    public static JSONObject serializeComponents(ItemStack itemStack) {
-        String input = itemStack.getItemMeta().getAsComponentString();
-        input = input.substring(1, input.length() - 1);
 
-        String[] pairs = input.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-
-        JSONObject jsonObject = new JSONObject();
-
-        for (String pair : pairs) {
-            String[] keyValue = pair.split("=", 2);
-            String key = keyValue[0].trim();
-            String value = keyValue[1].trim();
-
-            if (value.startsWith("{") && value.endsWith("}")) {
-                jsonObject.put(key, new JSONObject(value));
-            } else {
-                jsonObject.put(key, Integer.parseInt(value));
-            }
-        }
-
-        return jsonObject;
-    }
 }

@@ -17,7 +17,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -49,18 +48,20 @@ public class SessionManager {
     public static void startSession(Player player) {
         //{"this-is-a-uuid":[{"joined":238}]}
         JSONObject session = new JSONObject();
-        session.put("joined", new Date().getTime());
+        session.put("joined", System.currentTimeMillis());
         CURRENT_SESSIONS.put(player.getUniqueId(), session);
+        System.out.println("Started session for " + player.getName());
     }
 
     public static void finishSession(Player player) {
         if (!config.sessions.has(player.getUniqueId().toString()))
             config.sessions.put(player.getUniqueId().toString(), new JSONArray());
         JSONObject session = getSession(player);
-        session.put("left", new Date().getTime());
+        session.put("left", System.currentTimeMillis());
         session.put("playtime", session.getLong("left") - session.getLong("joined"));
         config.sessions.getJSONArray(player.getUniqueId().toString()).put(session);
         CURRENT_SESSIONS.remove(player.getUniqueId());
+        System.out.println("Finished session for " + player.getName());
     }
 
     public static long getOverallPlaytime(Player player) {
@@ -70,7 +71,7 @@ public class SessionManager {
             JSONObject session = sessions.getJSONObject(i);
             if (session.has("playtime")) playtime = playtime + session.getLong("playtime");
             else {
-                playtime = playtime + (new Date().getTime() - getSession(player).getLong("joined"));
+                playtime = playtime + (System.currentTimeMillis() - getSession(player).getLong("joined"));
             }
         }
         return playtime;

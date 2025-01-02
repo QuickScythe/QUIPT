@@ -46,7 +46,13 @@ public class ConfigManager {
                 JSONObject writtenData = loadJson(file);
 
                 for (Field configField : content.getContentValues()) {
-                    if(writtenData.has(configField.getName())) configField.set(content, writtenData.get(configField.getName()));
+                    if(writtenData.has(configField.getName())) {
+                        Object writtenValue = writtenData.get(configField.getName());
+                        if(configField.getType().isEnum()){
+                            writtenValue = Enum.valueOf((Class<Enum>) configField.getType(), (String) writtenValue);
+                        }
+                        configField.set(content, writtenValue);
+                    }
                 }
 
                 data.put(plugin.getName() + "/" + cf.name(), content);
@@ -96,6 +102,8 @@ public class ConfigManager {
         }
     }
 
+
+
     /**
      * Saves a config file
      * @param configContent The config file to save
@@ -107,7 +115,7 @@ public class ConfigManager {
             for (Field field : configContent.getContentValues()) {
                 data.put(field.getName(), field.get(configContent));
             }
-            CoreUtils.logger().log("QuiptConfig", "Result: " + writeJson(file, data));
+            CoreUtils.logger().log("QuiptConfig", "Saving %s: ".formatted(configContent.name()) + (writeJson(file, data) ? "Success" : "Failed"));
         } catch (IllegalAccessException e) {
             CoreUtils.logger().log(Logger.LogLevel.ERROR, "QuiptConfig", "Failed to save config file");
             CoreUtils.logger().log(Logger.LogLevel.ERROR, "QuiptConfig", e);

@@ -81,10 +81,6 @@ publishing {
     }
 }
 
-runServer {
-    pluginJars.from(configurations.runtimeClasspath)
-//    classpath += configurations.runtimeClasspath
-}
 
 
 modrinth {

@@ -1,6 +1,5 @@
 package me.quickscythe.quipt.commands.executors;
 
-import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import me.quickscythe.quipt.commands.CommandExecutor;
@@ -14,7 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-import static io.papermc.paper.command.brigadier.Commands.argument;
 import static io.papermc.paper.command.brigadier.Commands.literal;
 import static net.kyori.adventure.text.Component.text;
 
@@ -29,31 +27,22 @@ public class ResourcePackCommand extends CommandExecutor {
 
     @Override
     public LiteralCommandNode<CommandSourceStack> execute() {
-        return literal(getName()).executes(context -> showUsage(context, "quipt.admin.resourcepack")).then(argument("action", StringArgumentType.string()).suggests((context, builder) -> {
-            builder.suggest("update");
-            builder.suggest("reload");
-            return builder.buildFuture();
-        }).executes(context -> {
-            String action = StringArgumentType.getString(context, "action");
-
+        return literal(getName()).executes(context -> showUsage(context, "quipt.admin.resourcepack")).then(literal("update").executes(context -> {
+            CoreUtils.packServer().updatePack();
+            return 1;
+        })).then(literal("reload").executes(context -> {
             CommandSender sender = context.getSource().getSender();
-            if (action.equalsIgnoreCase("update") && sender.hasPermission("quipt.admin.resourcepack.update")) {
-                CoreUtils.packServer().updatePack();
-                return 1;
+
+            if (!(sender instanceof Player player))
+                return logError(sender, MessageUtils.getMessage("cmd.error.player_only"));
+            try {
+                CoreUtils.packServer().setPack(player);
+                player.sendMessage(text("Resource pack reloaded.").color(NamedTextColor.GREEN));
+            } catch (IOException | NoSuchAlgorithmException e) {
+                CoreUtils.logger().error("ResourcePackCommand", e);
+                sender.sendMessage(text("An error occurred while reloading the resource pack. Check the console for details.").color(NamedTextColor.RED));
             }
-            if (action.equalsIgnoreCase("reload") && sender.hasPermission("quipt.admin.resourcepack.reload")) {
-                if (!(sender instanceof Player player))
-                    return logError(sender, MessageUtils.getMessage("cmd.error.player_only"));
-                try {
-                    CoreUtils.packServer().setPack(player);
-                    player.sendMessage(text("Resource pack reloaded.").color(NamedTextColor.GREEN));
-                } catch (IOException | NoSuchAlgorithmException e) {
-                    CoreUtils.logger().error("ResourcePackCommand", e);
-                    sender.sendMessage(text("An error occurred while reloading the resource pack. Check the console for details.").color(NamedTextColor.RED));
-                }
-                return 1;
-            }
-            return 0;
+            return 1;
         })).build();
     }
 }

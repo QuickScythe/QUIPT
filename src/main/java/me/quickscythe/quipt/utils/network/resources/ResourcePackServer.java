@@ -63,9 +63,9 @@ public class ResourcePackServer {
                     repo.mkdirs()
                             ? "Set up 'repo' directory."
                             : "Couldn't set up 'repo' directory.");
-       if(pack.exists()){
-           startServer();
-       }
+        if(pack.exists()){
+            startServer();
+        }
     }
 
     private void startServer() {

@@ -1,0 +1,49 @@
+
+import io.papermc.paperweight.userdev.ReobfArtifactConfiguration
+
+plugins {
+    id 'java-library'
+    id("io.papermc.paperweight.userdev") version "1.7.7"
+    id("xyz.jpenilla.run-paper") version "2.3.0"
+    id 'maven-publish'
+}
+
+ext {
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven {
+        name = 'sponge'
+        url = 'https://repo.spongepowered.org/repository/maven-public/'
+    }
+//    maven {
+//        name = "quipt"
+//        url = "https://repo.vanillaflux.com/repository/quipt/"
+//    }
+}
+
+dependencies {
+    implementation project(":bot")
+    implementation project(":core")
+    String minecraft_version = libs.getMinecraft().get().version
+    String paper_version = libs.paper.get().version + "-" + libs.paper.get().group
+    paperweight.paperDevBundle("${minecraft_version}-${paper_version}")
+    implementation(libs.jda)
+    implementation(libs.json)
+    implementation(libs.jgit)
+
+
+
+
+}
+paperweight.reobfArtifactConfiguration = ReobfArtifactConfiguration.getMOJANG_PRODUCTION()
+

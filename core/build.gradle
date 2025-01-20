@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.quickscythe'
+version = '0.0.3-1.21-alpha-B1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    implementation "org.json:json:$json_version"
+    implementation "org.eclipse.jgit:org.eclipse.jgit:$jgit_version"
+    implementation("com.zaxxer:HikariCP:$hikari_version")
+}

@@ -1,15 +1,13 @@
-import io.papermc.paperweight.userdev.ReobfArtifactConfiguration
-
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id("io.papermc.paperweight.userdev") version "$paperweight_version"
-    id("xyz.jpenilla.run-paper") version "$run_paper_version"
-    id "com.modrinth.minotaur" version "$minotaur_version"
+    id "com.modrinth.minotaur" version "2.+"
+
 }
 
+
 group = rootProject.group
-version = "$plugin_version-$minecraft_version-$build_status-B$build_number"
+version = "${plugin_version}-$minecraft_version-$build_status-B$build_number"
 
 repositories {
     mavenCentral()
@@ -31,20 +29,22 @@ repositories {
 //    }
 }
 
-dependencies {
-    compileOnly "org.json:json:$json_version"
-    compileOnly "org.eclipse.jgit:org.eclipse.jgit:$jgit_version"
-    implementation("com.zaxxer:HikariCP:$hikari_version")
-    paperweight.paperDevBundle("${minecraft_version}-${paper_build}")
-    implementation("net.dv8tion:JDA:$jda_version")
 
-    implementation project(":bot")
+project(":paper") {
+    processResources {
+        def props = [version: "$plugin_version", minecraft_version: "$minecraft_version", author: "$author", name: "$rootProject.name"]
+        inputs.properties props
+        filteringCharset 'UTF-8'
+        filesMatching('paper-plugin.yml') {
+            expand props
+        }
+    }
+
 
 }
 
 //apply plugin: "com.gradleup.shadow"
 
-paperweight.reobfArtifactConfiguration = ReobfArtifactConfiguration.getMOJANG_PRODUCTION()
 def targetJavaVersion = Integer.parseInt(java_version)
 java {
     withSourcesJar()
@@ -65,14 +65,6 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
-processResources {
-    def props = [version: "$plugin_version", minecraft_version: "$minecraft_version", author: "$author", name: "$rootProject.name"]
-    inputs.properties props
-    filteringCharset 'UTF-8'
-    filesMatching('paper-plugin.yml') {
-        expand props
-    }
-}
 
 publishing {
     publications {
@@ -89,12 +81,10 @@ publishing {
 }
 
 
-
 modrinth {
     token = System.getenv("MODRINTH_TOKEN")
     def log = System.getenv("CHANGELOG")
-    if(log != null) changelog = log
-    else changelog = file("changelog.md").text
+    if (log != null) changelog = log else changelog = file("changelog.md").text
     projectId = "${modrinth_id}"
     versionNumber = "${plugin_version}"
     versionType = "${build_status}"
@@ -102,8 +92,7 @@ modrinth {
     loaders = ["paper"]
     syncBodyFrom = file("readme.md").text
 //    changelog = file("changelog.md").text
-    dependencies {
-    }
+    dependencies {}
 }
 
 tasks.modrinth.dependsOn(tasks.modrinthSyncBody)

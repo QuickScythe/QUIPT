@@ -1,0 +1,7 @@
+[libraries]
+jda = { module = "net.dv8tion:JDA", version = "5.0.1" }
+minecraft = { name="minecraft", version = "1.21", group="minecraft" }
+paper = { version = "R0.1", group="SNAPSHOT", name="paper" }
+craftbukkit = { version = "R0.1", group="SNAPSHOT", name = "bukkit" }
+json = { version = "20210307", group="org.json", name="json" }
+jgit = {module = "org.eclipse.jgit:org.eclipse.jgit", version = "6.6.1.202309021850-r" }

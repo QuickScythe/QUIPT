@@ -1,11 +1,3 @@
-/*
- * Copyright (c) 2024. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
- * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
- * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
- * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
- * Vestibulum commodo. Ut rhoncus gravida arcu.
- */
-
 package me.quickscythe.quipt.listeners;
 
 import me.quickscythe.quipt.utils.sessions.SessionManager;
@@ -31,12 +23,5 @@ public class SessionListener implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e){
         SessionManager.finishSession(e.getPlayer());
-    }
-
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent e){
-        JSONObject session = SessionManager.getSession(e.getPlayer());
-        String key = "blocks_mined";
-        session.put(key, session.has(key) ? session.getInt(key) + 1 : 1);
     }
 }

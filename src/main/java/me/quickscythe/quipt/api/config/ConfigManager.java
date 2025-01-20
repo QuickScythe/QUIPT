@@ -109,17 +109,9 @@ public class ConfigManager {
      * @param configContent The config file to save
      */
     public static void saveConfig(Config configContent) {
-        try {
-            File file = configContent.file();
-            JSONObject data = new JSONObject();
-            for (Field field : configContent.getContentValues()) {
-                data.put(field.getName(), field.get(configContent));
-            }
-            CoreUtils.logger().log("QuiptConfig", "Saving %s: ".formatted(configContent.name()) + (writeJson(file, data) ? "Success" : "Failed"));
-        } catch (IllegalAccessException e) {
-            CoreUtils.logger().log(Logger.LogLevel.ERROR, "QuiptConfig", "Failed to save config file");
-            CoreUtils.logger().log(Logger.LogLevel.ERROR, "QuiptConfig", e);
-        }
+        File file = configContent.file();
+        JSONObject data = configContent.json();
+        CoreUtils.logger().log("QuiptConfig", "Saving %s: ".formatted(configContent.name()) + (writeJson(file, data) ? "Success" : "Failed"));
     }
 
     private static boolean writeJson(File file, JSONObject data){

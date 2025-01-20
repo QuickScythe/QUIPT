@@ -25,6 +25,10 @@ repositories {
         name = 'sponge'
         url = 'https://repo.spongepowered.org/repository/maven-public/'
     }
+//    maven {
+//        name = "quipt"
+//        url = "https://repo.vanillaflux.com/repository/quipt/"
+//    }
 }
 
 dependencies {
@@ -32,6 +36,9 @@ dependencies {
     compileOnly "org.eclipse.jgit:org.eclipse.jgit:$jgit_version"
     implementation("com.zaxxer:HikariCP:$hikari_version")
     paperweight.paperDevBundle("${minecraft_version}-${paper_build}")
+    implementation("net.dv8tion:JDA:$jda_version")
+
+    implementation project(":bot")
 
 }
 

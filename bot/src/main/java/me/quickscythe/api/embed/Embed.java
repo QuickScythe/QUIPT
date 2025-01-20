@@ -1,4 +1,4 @@
-package me.quickscythe.quipt.utils.network.discord.embed;
+package me.quickscythe.api.embed;
 
 
 import org.json.JSONArray;

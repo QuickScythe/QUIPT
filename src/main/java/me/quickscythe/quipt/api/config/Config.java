@@ -1,5 +1,7 @@
 package me.quickscythe.quipt.api.config;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -47,5 +49,17 @@ public abstract class Config {
      */
     Field[] getContentValues() {
         return Arrays.stream(this.getClass().getFields()).filter(f -> f.isAnnotationPresent(ConfigValue.class)).toArray(Field[]::new);
+    }
+
+    public JSONObject json() {
+        JSONObject data = new JSONObject();
+        for (Field field : getContentValues()) {
+            try {
+                data.put(field.getName(), field.get(this));
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return data;
     }
 }

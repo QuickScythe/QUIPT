@@ -76,12 +76,17 @@ public class MessageUtils {
         addMessage("cmd.error.no_perm", "{\"text\":\"Sorry, you don't have the permission to run that command.\",\"color\":\"red\"}");
         addMessage("cmd.error.no_command", "{\"text\":\"Sorry, couldn't find the command \\\"[0]\\\". Please check your spelling and try again.\",\"color\":\"red\"}");
         addMessage("cmd.error.no_console", "{\"text\":\"Sorry, this command can only be run by players.\",\"color\":\"red\"}");
+        addMessage("cmd.session.start", "{\"text\":\"Session started\",\"color\":\"green\"}");
+        addMessage("cmd.session.end", "{\"text\":\"Session ended\",\"color\":\"green\"}");
+        addMessage("cmd.session.reward", "{\"text\":\"You have been rewarded with [0]\",\"color\":\"green\"}");
+        addMessage("cmd.session.task", "{\"text\":\"You have been assigned the task [0]\",\"color\":\"green\"}");
         addMessage("quipt.tpr.sent.requester", text().append(text("Teleport request sent to ", TextColor.color(325234))).append(text("[0]", TextColor.color(23434234))).append(text(".", TextColor.color(325234))).build());
         addMessage("quipt.tpr.sent.target", text().append(text("You have a teleport request from ", TextColor.color(325234))).append(text("[0]", TextColor.color(23434234))).append(text(". You have ", TextColor.color(325234)).append(text("30", NamedTextColor.RED).append(text(" seconds to respond.", TextColor.color(325234))))).build());
         addMessage("quipt.tpr.accepted.requester", text().append(text("Teleport request accepted from ", TextColor.color(325234))).append(text("[0]", TextColor.color(23434234))).append(text(".", TextColor.color(325234))).build());
         addMessage("quipt.tpr.accepted.target", text().append(text("Teleport request accepted from ", TextColor.color(325234))).append(text("[0]", TextColor.color(23434234))).append(text(".", TextColor.color(325234))).build());
         addMessage("quipt.tpr.denied.requester", text().append(text("Teleport request denied or timed-out from ", TextColor.color(325234))).append(text("[0]", TextColor.color(23434234))).append(text(".", TextColor.color(325234))).build());
         addMessage("quipt.tpr.denied.target", text().append(text("Teleport request denied or timed-out from ", TextColor.color(325234))).append(text("[0]", TextColor.color(23434234))).append(text(".", TextColor.color(325234))).build());
+
     }
 
     public static Component deserialize(JSONObject json) {
